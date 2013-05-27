@@ -228,7 +228,7 @@ public class Main extends BLEBaseActivity {
 	@Override
 	public void onStreamMessage(int steps, int calories,
 			float	 distance, int activityTime,
-			int activityLevel, int batteryLevel) {
+			int batteryLevel) {
 		// TODO Auto-generated method stub
 		String s = "";
 		s += "Wristband Stream :\n";
@@ -236,7 +236,6 @@ public class Main extends BLEBaseActivity {
 		s += "calories : " + calories + "\n";
 		s += "distance : " + distance + "\n";
 		s += "activityTime : " + activityTime + "\n";
-		s += "activityLevel : " + activityLevel + "\n";
 		s += "batteryLevel : " + batteryLevel + "\n";
 		
 		showMessage(s);

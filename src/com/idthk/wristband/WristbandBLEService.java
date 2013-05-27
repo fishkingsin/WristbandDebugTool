@@ -191,7 +191,10 @@ public class WristbandBLEService extends Service {
 	@Override
 	public void onCreate() {
 		if (bDebug)
+		{
 			Log.d(TAG, "onCreate()");
+			Log.d(TAG, "Only Handle BLE characteristic filtering");
+		}
 		if (mBtAdapter == null) {
 			mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 			if (mBtAdapter == null)
@@ -200,9 +203,6 @@ public class WristbandBLEService extends Service {
 		BluetoothGattAdapter.getProfileProxy(this, mProfileServiceListener,
 				BluetoothGattAdapter.GATT);
 		
-//		Intent Message1 = new Intent(this, WristbandBLEService.class);
-//		Message1.putExtra("hello", false);
-//		sendBroadcast(Message1);
 		
 	}
 
@@ -374,14 +374,6 @@ public class WristbandBLEService extends Service {
 						Log.v(TAG,
 								"Characteristic : " + characteristic.getUuid());
 					checkPropertieStyle(characteristic.getProperties());
-					// try {Thread.sleep(500);
-					// Log.v(TAG,"Wait a Second");
-					// } catch (InterruptedException e) {
-					// // TODO Auto-generated catch block
-					// e.printStackTrace();
-					// }
-					// EnableDeviceNoti(device, service.getUuid(),
-					// characteristic.getUuid());
 
 				}
 			}

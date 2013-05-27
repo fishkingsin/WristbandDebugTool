@@ -249,7 +249,7 @@ public class BLEBaseActivity extends Activity {
                             		float distance = (float) ((value_[10] * 100) + value_[11]+ (value_[12] / 100.0));
                           
                             		int activityTime = (value_[13] * 60) + value_[14];
-                            		int activityLevel = value_[15];
+//                            		int activityLevel = value_[15];
 
                             		int batteryLevel = value_[16];
                             	
@@ -257,7 +257,7 @@ public class BLEBaseActivity extends Activity {
                                     
                                     
                                     
-                            		onStreamMessage(steps, calories, distance, activityTime, activityLevel, batteryLevel);
+                            		onStreamMessage(steps, calories, distance, activityTime, batteryLevel);
                             	}
                             }catch (Exception e) {
                             	Log.e(TAG,e.toString());
@@ -639,7 +639,7 @@ public class BLEBaseActivity extends Activity {
 	}
 	public void onStreamMessage(int steps, int calories,
 			float distance, int activityTime,
-			int activityLevel, int batteryLevel) {
+			int activityLevel) {
 		// TODO Auto-generated method stub
 		
 	}
