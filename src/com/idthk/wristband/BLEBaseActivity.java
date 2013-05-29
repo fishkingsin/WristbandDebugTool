@@ -6,6 +6,7 @@ package com.idthk.wristband;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 
 import com.idthk.wristbanddebugtool.R;
@@ -363,7 +364,7 @@ public class BLEBaseActivity extends Activity {
                     Bundle _data = msg.getData();
                     final BluetoothDevice _device = _data
                             .getParcelable(BluetoothDevice.EXTRA_DEVICE);
-
+                    
                     List<BluetoothGattService> services = mService.mBluetoothGatt
                             .getServices(_device);
                     for (BluetoothGattService service : services) {
@@ -599,7 +600,27 @@ public class BLEBaseActivity extends Activity {
 	//public callback function
 	public void connect()
 	{
-		if(mService!=null)mService.scan(true);
+		Set<BluetoothDevice> pairedDevices = mBtAdapter.getBondedDevices();
+        for (BluetoothDevice pairedDevice : pairedDevices) {
+            boolean result = false;
+            result = mService.isBLEDevice(pairedDevice);
+            if (result == true) {
+            	
+            	
+            	if(pairedDevice.getName().charAt(0) =='A')
+            	{
+            		mDevice = pairedDevice;
+            		mService.connect(mDevice, false);
+            		
+            		Log.v(TAG,"Device Name : "+ mDevice.getName());
+            	}
+            	onDeviceFound();
+            }
+        }
+		if(mDevice==null)
+		{
+			if(mService!=null)mService.scan(true);
+		}
 	}
 	public void disconnect()
 	{
